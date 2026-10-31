@@ -15,22 +15,22 @@ export const createProductCard = (product) => {
   const image = p.image || 'https://via.placeholder.com/300';
 
   const card = document.createElement('div');
-  card.className = 'bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden card-hover flex flex-col';
+  card.className = 'bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden card-hover flex flex-col';
   card.innerHTML = `
-    <a href="${detailsUrl}" class="block bg-gray-50 p-4 h-48 flex items-center justify-center">
+    <a href="${detailsUrl}" class="block bg-gray-50 dark:bg-gray-900 p-4 h-48 flex items-center justify-center">
       <img src="${escapeHtml(image)}" alt="${escapeHtml(p.title)}" class="max-h-40 object-contain" loading="lazy" />
     </a>
     <div class="p-4 flex flex-col flex-1">
-      <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">${escapeHtml(p.category)}</p>
-      <h3 class="font-semibold text-gray-800 text-sm line-clamp-2 mb-2 flex-1">
-        <a href="${detailsUrl}" class="hover:text-blue-600">${escapeHtml(p.title)}</a>
+      <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">${escapeHtml(p.category)}</p>
+      <h3 class="font-semibold text-gray-800 dark:text-gray-100 text-sm line-clamp-2 mb-2 flex-1">
+        <a href="${detailsUrl}" class="hover:text-blue-600 dark:hover:text-blue-400">${escapeHtml(p.title)}</a>
       </h3>
       <div class="flex items-center gap-1 mb-2">${renderStars(p.rating)}</div>
       <div class="flex items-center justify-between mt-auto">
-        <span class="font-bold text-blue-600">${formatCurrency(p.price)}</span>
+        <span class="font-bold text-blue-600 dark:text-blue-400">${formatCurrency(p.price)}</span>
         <div class="flex items-center gap-2">
-          <a href="${detailsUrl}" class="text-xs text-gray-600 hover:text-blue-600">View</a>
-          <button class="add-to-cart-btn bg-blue-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-blue-700 transition" data-id="${p.id}">
+          <a href="${detailsUrl}" class="text-xs text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">View</a>
+          <button class="add-to-cart-btn bg-blue-600 dark:bg-blue-700 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-800 transition" data-id="${p.id}">
             <i data-lucide="plus" class="w-3 h-3 inline"></i> Cart
           </button>
         </div>
@@ -93,7 +93,7 @@ export const renderProductGrid = (container, products) => {
   container.innerHTML = '';
   if (!products || products.length === 0) {
     container.innerHTML = `
-      <div class="col-span-full flex flex-col items-center justify-center py-16 text-gray-400">
+      <div class="col-span-full flex flex-col items-center justify-center py-16 text-gray-400 dark:text-gray-500">
         <i data-lucide="inbox" class="w-12 h-12 mb-3"></i>
         <p class="text-sm">No products found.</p>
       </div>

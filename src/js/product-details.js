@@ -17,34 +17,34 @@ const renderDetail = (p) => {
   const c = detailContainer();
   if (!c) return;
   c.innerHTML = `
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 grid md:grid-cols-2 gap-8">
-      <div class="bg-gray-50 rounded-lg flex items-center justify-center p-6">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 grid md:grid-cols-2 gap-8">
+      <div class="bg-gray-50 dark:bg-gray-900 rounded-lg flex items-center justify-center p-6">
         <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)}" class="max-h-80 object-contain" />
       </div>
       <div>
-        <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">${escapeHtml(p.category)}</p>
+        <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">${escapeHtml(p.category)}</p>
         <h1 class="text-2xl font-bold mb-3">${escapeHtml(p.title)}</h1>
         <div class="flex items-center gap-2 mb-3">
           ${renderStars(p.rating)}
-          <span class="text-sm text-gray-500">(${p.ratingCount} reviews)</span>
+          <span class="text-sm text-gray-500 dark:text-gray-400">(${p.ratingCount} reviews)</span>
         </div>
-        <p class="text-3xl font-bold text-blue-600 mb-4">${formatCurrency(p.price)}</p>
-        <p class="text-gray-600 mb-6 leading-relaxed">${escapeHtml(p.description)}</p>
+        <p class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-4">${formatCurrency(p.price)}</p>
+        <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">${escapeHtml(p.description)}</p>
 
         <div class="flex items-center gap-3 mb-6">
           <span class="text-sm font-medium">Quantity:</span>
-          <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden">
-            <button id="qty-dec" class="px-3 py-2 hover:bg-gray-100">-</button>
-            <span id="qty-val" class="px-4 py-2 border-x border-gray-200">${qty}</span>
-            <button id="qty-inc" class="px-3 py-2 hover:bg-gray-100">+</button>
+          <div class="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+            <button id="qty-dec" class="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">-</button>
+            <span id="qty-val" class="px-4 py-2 border-x border-gray-200 dark:border-gray-700">${qty}</span>
+            <button id="qty-inc" class="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">+</button>
           </div>
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3">
-          <button id="add-to-cart-btn" class="flex-1 bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-2">
+          <button id="add-to-cart-btn" class="flex-1 bg-blue-600 dark:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-800 transition flex items-center justify-center gap-2">
             <i data-lucide="shopping-cart" class="w-5 h-5"></i> Add to Cart
           </button>
-          <a href="../pages/products.html" class="flex-1 text-center border border-gray-200 font-semibold px-6 py-3 rounded-lg hover:bg-gray-50 transition">Continue Shopping</a>
+          <a href="../pages/products.html" class="flex-1 text-center border border-gray-200 dark:border-gray-700 font-semibold px-6 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition">Continue Shopping</a>
         </div>
       </div>
     </div>
@@ -87,7 +87,7 @@ const load = async () => {
   const id = getQueryParam('id');
   const c = detailContainer();
   if (!id) {
-    if (c) c.innerHTML = '<p class="text-red-500">Missing product id.</p>';
+    if (c) c.innerHTML = '<p class="text-red-500 dark:text-red-400">Missing product id.</p>';
     return;
   }
   showLoading(c, 'Loading product...');

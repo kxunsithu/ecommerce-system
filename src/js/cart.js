@@ -16,11 +16,11 @@ const render = () => {
 
   if (!cart || cart.length === 0) {
     c.innerHTML = `
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-12 text-center">
-        <i data-lucide="shopping-cart" class="w-16 h-16 mx-auto text-gray-300 mb-4"></i>
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-12 text-center">
+        <i data-lucide="shopping-cart" class="w-16 h-16 mx-auto text-gray-300 dark:text-gray-400 mb-4"></i>
         <h2 class="text-xl font-semibold mb-2">Your cart is empty</h2>
-        <p class="text-gray-500 mb-6">Looks like you haven't added anything yet.</p>
-        <a href="../pages/products.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Continue Shopping</a>
+        <p class="text-gray-500 dark:text-gray-400 mb-6">Looks like you haven't added anything yet.</p>
+        <a href="../pages/products.html" class="inline-block bg-blue-600 dark:bg-blue-700 text-white px-6 py-3 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-800 transition">Continue Shopping</a>
       </div>
     `;
     if (window.lucide) window.lucide.createIcons();
@@ -33,33 +33,33 @@ const render = () => {
     <div class="grid lg:grid-cols-3 gap-6">
       <div class="lg:col-span-2 space-y-4">
         ${cart.map((it) => `
-          <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex gap-4 items-center">
-            <img src="${escapeHtml(it.image)}" alt="${escapeHtml(it.title)}" class="w-20 h-20 object-contain bg-gray-50 rounded" />
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 flex gap-4 items-center">
+            <img src="${escapeHtml(it.image)}" alt="${escapeHtml(it.title)}" class="w-20 h-20 object-contain bg-gray-50 dark:bg-gray-900 rounded" />
             <div class="flex-1 min-w-0">
-              <h3 class="font-semibold text-gray-800 line-clamp-2">${escapeHtml(it.title)}</h3>
-              <p class="text-blue-600 font-bold mt-1">${formatCurrency(it.price)}</p>
+              <h3 class="font-semibold text-gray-800 dark:text-gray-100 line-clamp-2">${escapeHtml(it.title)}</h3>
+              <p class="text-blue-600 dark:text-blue-400 font-bold mt-1">${formatCurrency(it.price)}</p>
             </div>
-            <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden">
-              <button class="qty-dec px-3 py-1 hover:bg-gray-100" data-id="${it.id}">-</button>
-              <span class="px-3 py-1 border-x border-gray-200">${it.quantity}</span>
-              <button class="qty-inc px-3 py-1 hover:bg-gray-100" data-id="${it.id}">+</button>
+            <div class="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button class="qty-dec px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700" data-id="${it.id}">-</button>
+              <span class="px-3 py-1 border-x border-gray-200 dark:border-gray-700">${it.quantity}</span>
+              <button class="qty-inc px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700" data-id="${it.id}">+</button>
             </div>
             <div class="text-right w-24">
               <p class="font-bold">${formatCurrency(it.price * it.quantity)}</p>
-              <button class="remove-btn text-red-500 text-xs mt-1 hover:text-red-700" data-id="${it.id}">Remove</button>
+              <button class="remove-btn text-red-500 dark:text-red-400 text-xs mt-1 hover:text-red-700 dark:hover:text-red-400" data-id="${it.id}">Remove</button>
             </div>
           </div>
         `).join('')}
       </div>
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 h-fit">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 h-fit">
         <h2 class="text-lg font-bold mb-4">Order Summary</h2>
         <div class="flex justify-between mb-2 text-sm"><span>Subtotal</span><span>${formatCurrency(subtotal)}</span></div>
         <div class="flex justify-between mb-4 text-sm"><span>Shipping</span><span>Free</span></div>
-        <div class="border-t border-gray-200 pt-4 flex justify-between font-bold text-lg mb-6">
-          <span>Total</span><span class="text-blue-600">${formatCurrency(subtotal)}</span>
+        <div class="border-t border-gray-200 dark:border-gray-700 pt-4 flex justify-between font-bold text-lg mb-6">
+          <span>Total</span><span class="text-blue-600 dark:text-blue-400">${formatCurrency(subtotal)}</span>
         </div>
-        <a href="../pages/checkout.html" class="block text-center bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition">Proceed to Checkout</a>
-        <a href="../pages/products.html" class="block text-center mt-3 text-blue-600 text-sm hover:underline">Continue Shopping</a>
+        <a href="../pages/checkout.html" class="block text-center bg-blue-600 dark:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-800 transition">Proceed to Checkout</a>
+        <a href="../pages/products.html" class="block text-center mt-3 text-blue-600 dark:text-blue-400 text-sm hover:underline">Continue Shopping</a>
       </div>
     </div>
   `;

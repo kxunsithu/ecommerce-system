@@ -19,8 +19,8 @@ const init = async () => {
       cats.forEach((c, i) => {
         const a = document.createElement('a');
         a.href = `./pages/products.html?category=${encodeURIComponent(c)}`;
-        a.className = 'bg-white rounded-xl border border-gray-100 shadow-sm p-4 text-center hover:border-blue-300 hover:shadow-md transition capitalize font-medium';
-        a.innerHTML = `<i data-lucide="${icons[i % icons.length]}" class="w-6 h-6 mx-auto text-blue-600 mb-2"></i><div>${escapeHtml(c)}</div>`;
+        a.className = 'bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-4 text-center hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-md transition capitalize font-medium';
+        a.innerHTML = `<i data-lucide="${icons[i % icons.length]}" class="w-6 h-6 mx-auto text-blue-600 dark:text-blue-400 mb-2"></i><div>${escapeHtml(c)}</div>`;
         catContainer.appendChild(a);
       });
       if (window.lucide) window.lucide.createIcons();

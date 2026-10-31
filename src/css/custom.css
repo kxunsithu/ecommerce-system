@@ -149,4 +149,11 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
 }
 
+/* Dark mode overrides for custom components */
+.dark .modal-box { background: #1f2937; color: #f3f4f6; }
+.dark .spinner { border-color: #374151; border-top-color: #60a5fa; }
+.dark .product-image { background: #374151; }
+.dark .star-empty { color: #4b5563; }
+.dark .modal-backdrop { background: rgba(0, 0, 0, 0.7); }
+
 /* Ensure tailwind content scanning includes js classes via safelist-like usage in html */

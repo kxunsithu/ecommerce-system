@@ -13,15 +13,15 @@ export const renderFooter = (containerSelector = '#footer') => {
   const contact = root() + 'pages/contact.html';
 
   container.innerHTML = `
-    <footer class="bg-gray-900 text-gray-300 mt-16">
+    <footer class="bg-gray-900 dark:bg-black text-gray-300 dark:text-gray-400 mt-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div class="flex items-center gap-2 font-bold text-xl text-white mb-3">
-              <i data-lucide="shopping-bag" class="w-6 h-6 text-blue-400"></i>
+              <i data-lucide="shopping-bag" class="w-6 h-6 text-blue-400 dark:text-blue-300"></i>
               <span>ShopEase</span>
             </div>
-            <p class="text-sm text-gray-400">Your one-stop shop for quality products at great prices.</p>
+            <p class="text-sm text-gray-400 dark:text-gray-500">Your one-stop shop for quality products at great prices.</p>
           </div>
           <div>
             <h4 class="font-semibold text-white mb-3">Quick Links</h4>
@@ -43,14 +43,14 @@ export const renderFooter = (containerSelector = '#footer') => {
           </div>
           <div>
             <h4 class="font-semibold text-white mb-3">Contact</h4>
-            <ul class="space-y-2 text-sm text-gray-400">
+            <ul class="space-y-2 text-sm text-gray-400 dark:text-gray-500">
               <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> support@shopease.com</li>
               <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> +1 (555) 123-4567</li>
               <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> 123 Market St, City</li>
             </ul>
           </div>
         </div>
-        <div class="border-t border-gray-800 mt-8 pt-6 text-center text-sm text-gray-500">
+        <div class="border-t border-gray-800 dark:border-gray-600 mt-8 pt-6 text-center text-sm text-gray-500 dark:text-gray-400">
           © ${new Date().getFullYear()} ShopEase. All rights reserved. Demo project using Fake Store API.
         </div>
       </div>

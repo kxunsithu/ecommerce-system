@@ -93,7 +93,7 @@ export const refreshIcons = () => {
 export const showLoading = (container, message = 'Loading...') => {
   if (!container) return;
   container.innerHTML = `
-    <div class="flex flex-col items-center justify-center py-16 text-gray-500">
+    <div class="flex flex-col items-center justify-center py-16 text-gray-500 dark:text-gray-400">
       <div class="spinner mb-4"></div>
       <p class="text-sm">${escapeHtml(message)}</p>
     </div>
@@ -103,7 +103,7 @@ export const showLoading = (container, message = 'Loading...') => {
 export const showError = (container, message = 'Something went wrong.') => {
   if (!container) return;
   container.innerHTML = `
-    <div class="flex flex-col items-center justify-center py-16 text-red-500">
+    <div class="flex flex-col items-center justify-center py-16 text-red-500 dark:text-red-400">
       <i data-lucide="alert-circle" class="w-10 h-10 mb-3"></i>
       <p class="text-sm text-center">${escapeHtml(message)}</p>
     </div>
@@ -114,7 +114,7 @@ export const showError = (container, message = 'Something went wrong.') => {
 export const showEmpty = (container, message = 'No items found.', icon = 'inbox') => {
   if (!container) return;
   container.innerHTML = `
-    <div class="flex flex-col items-center justify-center py-16 text-gray-400">
+    <div class="flex flex-col items-center justify-center py-16 text-gray-400 dark:text-gray-500">
       <i data-lucide="${icon}" class="w-12 h-12 mb-3"></i>
       <p class="text-sm text-center">${escapeHtml(message)}</p>
     </div>

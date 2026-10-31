@@ -3,6 +3,7 @@
 import { isAuthenticated, getCurrentCustomer, logoutCustomer } from './auth.js';
 import * as storage from './storage.js';
 import { refreshIcons } from './utils.js';
+import { toggleTheme } from './theme.js';
 
 const isPages = () => window.location.pathname.includes('/pages/');
 
@@ -27,57 +28,63 @@ export const renderNavbar = (containerSelector = '#navbar') => {
   const contact = root() + 'pages/contact.html';
 
   container.innerHTML = `
-    <header class="bg-white shadow-sm sticky top-0 z-50">
+    <header class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-          <a href="${home}" class="flex items-center gap-2 font-bold text-xl text-blue-600">
+          <a href="${home}" class="flex items-center gap-2 font-bold text-xl text-blue-600 dark:text-blue-400">
             <i data-lucide="shopping-bag" class="w-6 h-6"></i>
             <span>ShopEase</span>
           </a>
 
-          <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
-            <a href="${home}" class="hover:text-blue-600 transition">Home</a>
-            <a href="${products}" class="hover:text-blue-600 transition">Products</a>
-            <a href="${about}" class="hover:text-blue-600 transition">About</a>
-            <a href="${contact}" class="hover:text-blue-600 transition">Contact</a>
+          <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700 dark:text-gray-200">
+            <a href="${home}" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Home</a>
+            <a href="${products}" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Products</a>
+            <a href="${about}" class="hover:text-blue-600 dark:hover:text-blue-400 transition">About</a>
+            <a href="${contact}" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Contact</a>
           </nav>
 
           <div class="flex items-center gap-3">
             ${authed ? `
-              <a href="${cart}" class="relative p-2 text-gray-700 hover:text-blue-600 transition" aria-label="Cart">
+              <a href="${cart}" class="relative p-2 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition" aria-label="Cart">
                 <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-                <span id="cart-count" class="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">${cartCount}</span>
+                <span id="cart-count" class="absolute -top-1 -right-1 bg-blue-600 dark:bg-blue-700 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">${cartCount}</span>
               </a>
               <div class="hidden md:flex items-center gap-3">
-                <a href="${profile}" class="text-sm font-medium text-gray-700 hover:text-blue-600 transition flex items-center gap-1">
+                <a href="${profile}" class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1">
                   <i data-lucide="user" class="w-4 h-4"></i> ${escapeHtml(customer.fullName || customer.username)}
                 </a>
-                <button id="logout-btn" class="text-sm font-medium text-red-600 hover:text-red-700 transition">Logout</button>
+                <button id="logout-btn" class="text-sm font-medium text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-400 transition">Logout</button>
               </div>
             ` : `
-              <a href="${login}" class="text-sm font-medium text-gray-700 hover:text-blue-600 transition">Login</a>
-              <a href="${register}" class="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Register</a>
+              <a href="${login}" class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition">Login</a>
+              <a href="${register}" class="text-sm font-medium bg-blue-600 dark:bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-800 transition">Register</a>
             `}
-            <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-700" aria-label="Menu">
+            <button id="theme-toggle" class="p-2 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition" aria-label="Toggle dark mode" title="Toggle theme">
+              <i data-lucide="moon" data-theme-icon class="w-5 h-5"></i>
+            </button>
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-700 dark:text-gray-200" aria-label="Menu">
               <i data-lucide="menu" class="w-5 h-5"></i>
             </button>
           </div>
         </div>
 
         <div id="mobile-menu" class="mobile-menu md:hidden">
-          <div class="flex flex-col gap-2 pb-4 text-sm font-medium text-gray-700">
-            <a href="${home}" class="py-2 hover:text-blue-600">Home</a>
-            <a href="${products}" class="py-2 hover:text-blue-600">Products</a>
-            <a href="${about}" class="py-2 hover:text-blue-600">About</a>
-            <a href="${contact}" class="py-2 hover:text-blue-600">Contact</a>
+          <div class="flex flex-col gap-2 pb-4 text-sm font-medium text-gray-700 dark:text-gray-200">
+            <a href="${home}" class="py-2 hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+            <a href="${products}" class="py-2 hover:text-blue-600 dark:hover:text-blue-400">Products</a>
+            <a href="${about}" class="py-2 hover:text-blue-600 dark:hover:text-blue-400">About</a>
+            <a href="${contact}" class="py-2 hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+            <button id="mobile-theme-toggle" class="text-left py-2 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2">
+              <i data-lucide="moon" data-theme-icon class="w-4 h-4"></i> <span>Toggle theme</span>
+            </button>
             ${authed ? `
-              <a href="${cart}" class="py-2 hover:text-blue-600">Cart (${cartCount})</a>
-              <a href="${orders}" class="py-2 hover:text-blue-600">Orders</a>
-              <a href="${profile}" class="py-2 hover:text-blue-600">Profile</a>
-              <button id="mobile-logout-btn" class="text-left py-2 text-red-600">Logout</button>
+              <a href="${cart}" class="py-2 hover:text-blue-600 dark:hover:text-blue-400">Cart (${cartCount})</a>
+              <a href="${orders}" class="py-2 hover:text-blue-600 dark:hover:text-blue-400">Orders</a>
+              <a href="${profile}" class="py-2 hover:text-blue-600 dark:hover:text-blue-400">Profile</a>
+              <button id="mobile-logout-btn" class="text-left py-2 text-red-600 dark:text-red-400">Logout</button>
             ` : `
-              <a href="${login}" class="py-2 hover:text-blue-600">Login</a>
-              <a href="${register}" class="py-2 hover:text-blue-600">Register</a>
+              <a href="${login}" class="py-2 hover:text-blue-600 dark:hover:text-blue-400">Login</a>
+              <a href="${register}" class="py-2 hover:text-blue-600 dark:hover:text-blue-400">Register</a>
             `}
           </div>
         </div>
@@ -91,6 +98,11 @@ export const renderNavbar = (containerSelector = '#navbar') => {
   if (mobileBtn && mobileMenu) {
     mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
   }
+
+  const themeBtn = document.getElementById('theme-toggle');
+  if (themeBtn) themeBtn.addEventListener('click', () => toggleTheme());
+  const mobileThemeBtn = document.getElementById('mobile-theme-toggle');
+  if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', () => toggleTheme());
 
   const logoutBtn = document.getElementById('logout-btn');
   if (logoutBtn) {
